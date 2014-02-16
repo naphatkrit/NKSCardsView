@@ -22,6 +22,7 @@
 		814420D718B139B20057AFEE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 814420B618B139B20057AFEE /* UIKit.framework */; };
 		814420DF18B139B30057AFEE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 814420DD18B139B30057AFEE /* InfoPlist.strings */; };
 		814420E118B139B30057AFEE /* NKSCardsViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 814420E018B139B30057AFEE /* NKSCardsViewTests.m */; };
+		815EC39A18B14A5600466BBE /* NKSCardsStackLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 815EC39918B14A5600466BBE /* NKSCardsStackLayout.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,8 @@
 		814420DC18B139B30057AFEE /* NKSCardsViewTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "NKSCardsViewTests-Info.plist"; sourceTree = "<group>"; };
 		814420DE18B139B30057AFEE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		814420E018B139B30057AFEE /* NKSCardsViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NKSCardsViewTests.m; sourceTree = "<group>"; };
+		815EC39818B14A5600466BBE /* NKSCardsStackLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKSCardsStackLayout.h; sourceTree = "<group>"; };
+		815EC39918B14A5600466BBE /* NKSCardsStackLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKSCardsStackLayout.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +123,8 @@
 				814420C718B139B20057AFEE /* Main_iPad.storyboard */,
 				814420CA18B139B20057AFEE /* NKSCardsCollectionViewController.h */,
 				814420CB18B139B20057AFEE /* NKSCardsCollectionViewController.m */,
+				815EC39818B14A5600466BBE /* NKSCardsStackLayout.h */,
+				815EC39918B14A5600466BBE /* NKSCardsStackLayout.m */,
 				814420CD18B139B20057AFEE /* Images.xcassets */,
 				814420B918B139B20057AFEE /* Supporting Files */,
 			);
@@ -255,6 +260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				814420BF18B139B20057AFEE /* main.m in Sources */,
+				815EC39A18B14A5600466BBE /* NKSCardsStackLayout.m in Sources */,
 				814420C318B139B20057AFEE /* NKSAppDelegate.m in Sources */,
 				814420CC18B139B20057AFEE /* NKSCardsCollectionViewController.m in Sources */,
 			);
