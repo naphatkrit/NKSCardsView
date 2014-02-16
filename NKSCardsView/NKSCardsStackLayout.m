@@ -45,4 +45,21 @@
     return self.frameDict[indexPath];
 }
 
+-(NSArray *)layoutAttributesForElementsInRect:(CGRect)rect
+{
+    NSMutableArray *visibleIndexPaths = [NSMutableArray new];
+    for (NSIndexPath *key in self.frameDict) {
+        UICollectionViewLayoutAttributes *layoutAttributes = self.frameDict[key];
+        if (CGRectIntersectsRect(rect, layoutAttributes.frame)) {
+            [visibleIndexPaths addObject:layoutAttributes];
+        }
+    }
+    return visibleIndexPaths;
+}
+
+-(CGSize)collectionViewContentSize
+{
+    return CGSizeMake(320, 1000);
+}
+
 @end
