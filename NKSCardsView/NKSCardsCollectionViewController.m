@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 Naphat Sanguansin. All rights reserved.
 //
 
-#import "NKSViewController.h"
+#import "NKSCardsCollectionViewController.h"
 
-@interface NKSViewController ()
+@interface NKSCardsCollectionViewController ()
 
 @end
 
-@implementation NKSViewController
+@implementation NKSCardsCollectionViewController
 
 - (void)viewDidLoad
 {

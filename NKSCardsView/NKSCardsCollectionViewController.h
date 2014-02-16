@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NKSViewController : UIViewController
+@interface NKSCardsCollectionViewController : UIViewController
 
 @end

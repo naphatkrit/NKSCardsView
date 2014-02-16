@@ -15,7 +15,7 @@
 		814420C318B139B20057AFEE /* NKSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 814420C218B139B20057AFEE /* NKSAppDelegate.m */; };
 		814420C618B139B20057AFEE /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 814420C418B139B20057AFEE /* Main_iPhone.storyboard */; };
 		814420C918B139B20057AFEE /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 814420C718B139B20057AFEE /* Main_iPad.storyboard */; };
-		814420CC18B139B20057AFEE /* NKSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 814420CB18B139B20057AFEE /* NKSViewController.m */; };
+		814420CC18B139B20057AFEE /* NKSCardsCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 814420CB18B139B20057AFEE /* NKSCardsCollectionViewController.m */; };
 		814420CE18B139B20057AFEE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 814420CD18B139B20057AFEE /* Images.xcassets */; };
 		814420D518B139B20057AFEE /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 814420D418B139B20057AFEE /* XCTest.framework */; };
 		814420D618B139B20057AFEE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 814420B218B139B20057AFEE /* Foundation.framework */; };
@@ -47,8 +47,8 @@
 		814420C218B139B20057AFEE /* NKSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NKSAppDelegate.m; sourceTree = "<group>"; };
 		814420C518B139B20057AFEE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		814420C818B139B20057AFEE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
-		814420CA18B139B20057AFEE /* NKSViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NKSViewController.h; sourceTree = "<group>"; };
-		814420CB18B139B20057AFEE /* NKSViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NKSViewController.m; sourceTree = "<group>"; };
+		814420CA18B139B20057AFEE /* NKSCardsCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NKSCardsCollectionViewController.h; sourceTree = "<group>"; };
+		814420CB18B139B20057AFEE /* NKSCardsCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NKSCardsCollectionViewController.m; sourceTree = "<group>"; };
 		814420CD18B139B20057AFEE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		814420D318B139B20057AFEE /* NKSCardsViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NKSCardsViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		814420D418B139B20057AFEE /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -118,8 +118,8 @@
 				814420C218B139B20057AFEE /* NKSAppDelegate.m */,
 				814420C418B139B20057AFEE /* Main_iPhone.storyboard */,
 				814420C718B139B20057AFEE /* Main_iPad.storyboard */,
-				814420CA18B139B20057AFEE /* NKSViewController.h */,
-				814420CB18B139B20057AFEE /* NKSViewController.m */,
+				814420CA18B139B20057AFEE /* NKSCardsCollectionViewController.h */,
+				814420CB18B139B20057AFEE /* NKSCardsCollectionViewController.m */,
 				814420CD18B139B20057AFEE /* Images.xcassets */,
 				814420B918B139B20057AFEE /* Supporting Files */,
 			);
@@ -256,7 +256,7 @@
 			files = (
 				814420BF18B139B20057AFEE /* main.m in Sources */,
 				814420C318B139B20057AFEE /* NKSAppDelegate.m in Sources */,
-				814420CC18B139B20057AFEE /* NKSViewController.m in Sources */,
+				814420CC18B139B20057AFEE /* NKSCardsCollectionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -475,6 +475,7 @@
 				814420E618B139B30057AFEE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		814420E718B139B30057AFEE /* Build configuration list for PBXNativeTarget "NKSCardsViewTests" */ = {
 			isa = XCConfigurationList;
@@ -483,6 +484,7 @@
 				814420E918B139B30057AFEE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
