@@ -8,6 +8,7 @@
 
 #import "NKSCardsCollectionViewController.h"
 #import "NKSCardsStackLayout.h"
+#import "NKSCardViewCell.h"
 #define REUSE_IDENTIFIER @"id"
 
 @interface NKSCardsCollectionViewController ()
@@ -23,7 +24,7 @@
     
     NKSCardsStackLayout *stackLayout = [[NKSCardsStackLayout alloc] initWithMainIndex:[NSIndexPath indexPathForItem:0 inSection:0]];
     [self.collectionView setCollectionViewLayout:stackLayout];
-    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:REUSE_IDENTIFIER];
+    [self.collectionView registerNib:[UINib nibWithNibName:@"NKSCardViewCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:REUSE_IDENTIFIER];
 }
 
 - (void)didReceiveMemoryWarning
@@ -45,10 +46,9 @@
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:REUSE_IDENTIFIER forIndexPath:indexPath];
-
-    cell.backgroundColor = [UIColor greenColor];
-    cell.alpha = 0.5;
+    NKSCardViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:REUSE_IDENTIFIER forIndexPath:indexPath];
+    cell.headingLabel.text = [NSString stringWithFormat:@"Heading %d", indexPath.item];
+    
     return cell;
 }
 

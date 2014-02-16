@@ -49,7 +49,7 @@
 {
     CGFloat height = 200.0;
     CGFloat width = 300.0;
-    CGFloat verticalDist = 40.0;
+    CGFloat verticalDist = 100.0;
     CGFloat topMargin = 300.0;
     NSInteger offset = 0;
     
