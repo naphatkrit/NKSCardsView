@@ -19,9 +19,19 @@
 
 @implementation NKSCardsStackLayout
 
+-(NKSCardsStackLayout *)initWithMainIndex:(NSIndexPath *)mainIndex
+{
+    self = [super init];
+    if (self) {
+        self.mainIndexPath = mainIndex;
+    }
+    return self;
+}
+
 -(void)prepareLayout
 {
     self.frameDict = [NSMutableDictionary new];
+    int count = 0;
     for (int section = 0; section < self.collectionView.numberOfSections; section++)
         for (int item = 0; item < [self.collectionView numberOfItemsInSection:section]; item++)
         {
@@ -29,7 +39,9 @@
             CGRect frame = [self frameForIndexPath:indexPath];
             UICollectionViewLayoutAttributes *layoutAttributes = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
             layoutAttributes.frame = frame;
+            layoutAttributes.zIndex = count * -1;
             self.frameDict[indexPath] = layoutAttributes;
+            count--;
         }
 }
 
@@ -37,7 +49,25 @@
 {
     CGFloat height = 200.0;
     CGFloat width = 300.0;
-    return CGRectMake((self.collectionView.bounds.size.width - width)/2.0, indexPath.item * height * 2.0, width, height);
+    CGFloat verticalDist = 40.0;
+    CGFloat topMargin = 300.0;
+    NSInteger offset = 0;
+    
+    NSComparisonResult comparisonResult = [indexPath compare:self.mainIndexPath];
+    
+    switch (comparisonResult) {
+        case NSOrderedAscending:
+            break;
+        case NSOrderedSame:
+            return CGRectMake((self.collectionView.bounds.size.width - width)/2.0, 0, width, height);
+            break;
+        case NSOrderedDescending:
+            offset = -1;
+            break;
+    }
+    
+    
+    return CGRectMake((self.collectionView.bounds.size.width - width)/2.0, topMargin + (indexPath.item + offset) * verticalDist, width, height);
 }
 
 -(UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath

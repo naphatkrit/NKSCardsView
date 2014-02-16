@@ -10,4 +10,6 @@
 
 @interface NKSCardsStackLayout : UICollectionViewLayout
 
+-(NKSCardsStackLayout *)initWithMainIndex:(NSIndexPath *)mainIndex;
+
 @end

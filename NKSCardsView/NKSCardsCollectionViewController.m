@@ -21,7 +21,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    NKSCardsStackLayout *stackLayout = [NKSCardsStackLayout new];
+    NKSCardsStackLayout *stackLayout = [[NKSCardsStackLayout alloc] initWithMainIndex:[NSIndexPath indexPathForItem:0 inSection:0]];
     [self.collectionView setCollectionViewLayout:stackLayout];
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:REUSE_IDENTIFIER];
 }
@@ -32,6 +32,8 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Collection View Data Source
+
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
     return 1;
@@ -39,15 +41,25 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 5;
+    return 3;
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:REUSE_IDENTIFIER forIndexPath:indexPath];
 
     cell.backgroundColor = [UIColor greenColor];
+    cell.alpha = 0.5;
     return cell;
 }
+
+#pragma mark - Collection View Delegate
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NKSCardsStackLayout *stackLayout = [[NKSCardsStackLayout alloc] initWithMainIndex:indexPath];
+    [collectionView setCollectionViewLayout:stackLayout animated:YES];
+}
+
 
 
 @end
