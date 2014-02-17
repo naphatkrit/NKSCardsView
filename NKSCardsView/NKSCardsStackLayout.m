@@ -12,6 +12,7 @@
 
 @property (nonatomic, strong) NSIndexPath *mainIndexPath;
 @property (nonatomic, strong) NSMutableDictionary *frameDict;
+@property (nonatomic, strong) NSMutableDictionary *stickyFrameDict;
 
 -(CGRect)frameForIndexPath:(NSIndexPath *)indexPath;
 
@@ -31,6 +32,7 @@
 -(void)prepareLayout
 {
     self.frameDict = [NSMutableDictionary new];
+    self.stickyFrameDict = [NSMutableDictionary new];
     int count = 0;
     for (int section = 0; section < self.collectionView.numberOfSections; section++)
         for (int item = 0; item < [self.collectionView numberOfItemsInSection:section]; item++)
@@ -41,6 +43,12 @@
             layoutAttributes.frame = frame;
             layoutAttributes.zIndex = count * -1;
             self.frameDict[indexPath] = layoutAttributes;
+            
+            UICollectionViewLayoutAttributes *stickyLayoutAttributes = [layoutAttributes copy];
+            frame.origin.y = 0.0;
+            stickyLayoutAttributes.frame = frame;
+            self.stickyFrameDict[indexPath] = stickyLayoutAttributes;
+            
             count--;
         }
 }
@@ -77,14 +85,33 @@
 
 -(NSArray *)layoutAttributesForElementsInRect:(CGRect)rect
 {
-    NSMutableArray *visibleIndexPaths = [NSMutableArray new];
+    
+    NSMutableArray *visibleLayoutAttributes = [NSMutableArray new];
     for (NSIndexPath *key in self.frameDict) {
-        UICollectionViewLayoutAttributes *layoutAttributes = self.frameDict[key];
-        if (CGRectIntersectsRect(rect, layoutAttributes.frame)) {
-            [visibleIndexPaths addObject:layoutAttributes];
+        UICollectionViewLayoutAttributes *layoutAttributes = [self attributesForIndexPath:key inRect:rect];
+        if (layoutAttributes != nil) {
+            [visibleLayoutAttributes addObject:layoutAttributes];
         }
     }
-    return visibleIndexPaths;
+    return visibleLayoutAttributes;
+}
+
+-(UICollectionViewLayoutAttributes *)attributesForIndexPath:(NSIndexPath *)indexPath inRect:(CGRect) rect;
+{
+    UICollectionViewLayoutAttributes *layoutAttributes = self.frameDict[indexPath];
+    if (CGRectIntersectsRect(rect, layoutAttributes.frame)) {
+        return layoutAttributes;
+    }
+    layoutAttributes = self.stickyFrameDict[indexPath];
+    if (CGRectIntersectsRect(rect, layoutAttributes.frame)) {
+        return layoutAttributes;
+    }
+    return nil;
+}
+
+- (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds
+{
+    return YES;
 }
 
 -(CGSize)collectionViewContentSize
