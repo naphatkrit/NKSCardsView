@@ -10,6 +10,7 @@
 
 @interface NKSCardsStackLayout ()
 
+@property (nonatomic, strong) UIDynamicAnimator *dynamicAnimator;
 @property (nonatomic, strong) NSIndexPath *mainIndexPath;
 @property (nonatomic, strong) NSMutableDictionary *frameDict;
 @property (nonatomic, strong) NSMutableDictionary *stickyFrameDict;
@@ -19,6 +20,20 @@
 @end
 
 @implementation NKSCardsStackLayout
+
+- (id)init
+{
+    if (!(self = [super init])) return nil;
+    
+//    self.minimumInteritemSpacing = 10;
+//    self.minimumLineSpacing = 10;
+//    self.itemSize = CGSizeMake(44, 44);
+//    self.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
+    
+    
+    
+    return self;
+}
 
 -(NKSCardsStackLayout *)initWithMainIndex:(NSIndexPath *)mainIndex
 {
@@ -31,6 +46,7 @@
 
 -(void)prepareLayout
 {
+    self.dynamicAnimator = [[UIDynamicAnimator alloc] initWithCollectionViewLayout:self];
     self.frameDict = [NSMutableDictionary new];
     self.stickyFrameDict = [NSMutableDictionary new];
     int count = 0;
@@ -51,6 +67,19 @@
             
             count--;
         }
+    
+    if (self.dynamicAnimator.behaviors.count == 0) {
+        [self.frameDict.allValues enumerateObjectsUsingBlock:^(id<UIDynamicItem> obj, NSUInteger idx, BOOL *stop) {
+            UIAttachmentBehavior *behaviour = [[UIAttachmentBehavior alloc] initWithItem:obj
+                                                                        attachedToAnchor:[obj center]];
+
+            behaviour.length = 0.0f;
+            behaviour.damping = 0.8f;
+            behaviour.frequency = 1.0f;
+            
+            [self.dynamicAnimator addBehavior:behaviour];
+        }];
+    }
 }
 
 -(CGRect)frameForIndexPath:(NSIndexPath *)indexPath
@@ -80,38 +109,60 @@
 
 -(UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return self.frameDict[indexPath];
+    return [self.dynamicAnimator layoutAttributesForCellAtIndexPath:indexPath];
 }
 
 -(NSArray *)layoutAttributesForElementsInRect:(CGRect)rect
 {
     
-    NSMutableArray *visibleLayoutAttributes = [NSMutableArray new];
-    for (NSIndexPath *key in self.frameDict) {
-        UICollectionViewLayoutAttributes *layoutAttributes = [self attributesForIndexPath:key inRect:rect];
-        if (layoutAttributes != nil) {
-            [visibleLayoutAttributes addObject:layoutAttributes];
-        }
-    }
-    return visibleLayoutAttributes;
+//    NSMutableArray *visibleLayoutAttributes = [NSMutableArray new];
+//    for (NSIndexPath *key in self.frameDict) {
+//        UICollectionViewLayoutAttributes *layoutAttributes = [self attributesForIndexPath:key inRect:rect];
+//        if (layoutAttributes != nil) {
+//            [visibleLayoutAttributes addObject:layoutAttributes];
+//        }
+//    }
+    return [self.dynamicAnimator itemsInRect:rect];
 }
 
--(UICollectionViewLayoutAttributes *)attributesForIndexPath:(NSIndexPath *)indexPath inRect:(CGRect) rect;
-{
-    UICollectionViewLayoutAttributes *layoutAttributes = self.frameDict[indexPath];
-    if (CGRectIntersectsRect(rect, layoutAttributes.frame)) {
-        return layoutAttributes;
-    }
-    layoutAttributes = self.stickyFrameDict[indexPath];
-    if (CGRectIntersectsRect(rect, layoutAttributes.frame)) {
-        return layoutAttributes;
-    }
-    return nil;
-}
+//-(UICollectionViewLayoutAttributes *)attributesForIndexPath:(NSIndexPath *)indexPath inRect:(CGRect) rect;
+//{
+//    UICollectionViewLayoutAttributes *layoutAttributes = self.frameDict[indexPath];
+//    if (CGRectIntersectsRect(rect, layoutAttributes.frame)) {
+//        return layoutAttributes;
+//    }
+//    layoutAttributes = self.stickyFrameDict[indexPath];
+//    if (CGRectIntersectsRect(rect, layoutAttributes.frame)) {
+//        return layoutAttributes;
+//    }
+//    return nil;
+//}
 
 - (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds
 {
-    return YES;
+    UIScrollView *scrollView = self.collectionView;
+    CGFloat delta = newBounds.origin.y - scrollView.bounds.origin.y;
+    
+    CGPoint touchLocation = [self.collectionView.panGestureRecognizer locationInView:self.collectionView];
+    
+    [self.dynamicAnimator.behaviors enumerateObjectsUsingBlock:^(UIAttachmentBehavior *springBehaviour, NSUInteger idx, BOOL *stop) {
+        CGFloat yDistanceFromTouch = fabsf(touchLocation.y - springBehaviour.anchorPoint.y);
+        CGFloat xDistanceFromTouch = fabsf(touchLocation.x - springBehaviour.anchorPoint.x);
+        CGFloat scrollResistance = (yDistanceFromTouch + xDistanceFromTouch) / 100.0f;
+        
+        UICollectionViewLayoutAttributes *item = springBehaviour.items.firstObject;
+        CGPoint center = item.center;
+        if (delta < 0) {
+            center.y += MAX(delta, delta*scrollResistance);
+        }
+        else {
+            center.y += MIN(delta, delta*scrollResistance);
+        }
+        item.center = center;
+        
+        [self.dynamicAnimator updateItemUsingCurrentState:item];
+    }];
+    return NO;
 }
 
 -(CGSize)collectionViewContentSize
