@@ -13,10 +13,13 @@
 @interface NKSCardsViewController () <NKSCardsMenuDelegate>
 
 @property (nonatomic, strong) NKSCardsMenuCollectionViewController *menuViewController;
+//@property (nonatomic, strong) UITapGestureRecognizer *menuTapGestureRecognizer;
 @property (nonatomic, strong) NKSCardsContentViewController *contentViewController;
 
 -(void)setupMenuViewController;
 -(void)setupContentViewController;
+
+-(void)expandMenu;
 
 @end
 
@@ -57,6 +60,15 @@
     NSLayoutConstraint *rightConstraint = [NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.menuViewController.view attribute:NSLayoutAttributeRight multiplier:1.0 constant:0.0];
     NSLayoutConstraint *leftConstraint = [NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.menuViewController.view attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0.0];
     [self.view addConstraints:@[topConstraint, botConstraint, rightConstraint, leftConstraint]];
+    
+//    self.menuTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(expandMenu)];
+//    [self.menuViewController.view addGestureRecognizer:self.menuTapGestureRecognizer];
+//    self.menuTapGestureRecognizer.enabled = NO;
+}
+
+- (void)expandMenu
+{
+    NSLog(@"touched");
 }
 
 - (void)setupContentViewController
@@ -94,6 +106,7 @@
 {
     [self.contentViewController.view setHidden:NO];
     [self.contentViewController expandContent];
+//    self.menuTapGestureRecognizer.enabled = YES;
 }
 
 @end

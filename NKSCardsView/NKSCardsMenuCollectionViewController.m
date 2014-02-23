@@ -7,6 +7,7 @@
 //
 
 #import "NKSCardsMenuCollectionViewController.h"
+#import "NKSTouchForwardedCollectionViewContainerView.h"
 #import "NKSCardsStackLayout.h"
 #import "NKSCardViewCell.h"
 #define REUSE_IDENTIFIER @"id"
@@ -17,11 +18,48 @@
 
 @end
 
+@implementation UIView (NKSTouchForwarding)
+
+-(BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event
+{
+    if ([self.subviews.lastObject isKindOfClass:[UICollectionView class]]) {
+        for (UIView *subview in [self.subviews.lastObject subviews]) {
+            CGPoint relativePoint = CGPointMake(point.x - subview.frame.origin.x, point.y - subview.frame.origin.y);
+            if (subview.userInteractionEnabled && [subview pointInside:relativePoint withEvent:event]) {
+                return YES;
+            }
+        }
+        return NO;
+    }
+    return self.userInteractionEnabled && CGRectContainsPoint(self.bounds, point);
+}
+
+@end
+
 @implementation NKSCardsMenuCollectionViewController
 
+-(id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        
+    }
+    return self;
+}
+- (void)loadView
+{
+    [super loadView];
+//    UIView *newView = [[NKSTouchForwardedCollectionViewContainerView alloc] init];
+//    for (UIView *subview in self.view.subviews) {
+//        [newView addSubview:subview];
+//    }
+//    self.view = newView;
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    
     
     [self.view setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.collectionView setShowsVerticalScrollIndicator:NO];
@@ -72,17 +110,18 @@
         stackLayout.cardSize = oldLayout.cardSize;
         stackLayout.stackCardsInterSpacing = NKS_CARDS_SPACING_COLLAPSED;
         
-        __weak UICollectionView *weakCollectionView = collectionView;
+        __weak UICollectionView *wCollectionView = collectionView;
         [self.menuDelegate willCollapseMenu];
         [collectionView setCollectionViewLayout:stackLayout animated:YES completion:^(BOOL finished) {
-            [weakCollectionView performBatchUpdates:^{
-                [stackLayout hideMainIndex];
+            [wCollectionView performBatchUpdates:^{
+                [[wCollectionView cellForItemAtIndexPath:indexPath] setHidden:YES];
+                [[wCollectionView cellForItemAtIndexPath:indexPath] setUserInteractionEnabled:NO];
             } completion:^(BOOL finished) {
                 
             }];
             [self.menuDelegate didCollapseMenu];
         }];
-        [self.view setUserInteractionEnabled:NO];
+        [collectionView setScrollEnabled:NO];
     }
 }
 

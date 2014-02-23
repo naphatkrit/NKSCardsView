@@ -129,7 +129,8 @@
         return;
     }
     UICollectionViewLayoutAttributes *attr = self.attrDict[self.mainIndexPath];
-    [attr setAlpha:0];
+//    [attr setAlpha:0];
+    [attr setHidden:YES];
 }
 
 -(UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath
