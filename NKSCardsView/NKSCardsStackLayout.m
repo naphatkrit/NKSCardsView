@@ -123,16 +123,6 @@
     return CGRectMake((self.collectionView.bounds.size.width - width)/2.0, stackTopMargin + (indexPath.item + offset) * self.stackCardsInterSpacing, width, height);
 }
 
--(void)hideMainIndex
-{
-    if (!self.mainIndexPath) {
-        return;
-    }
-    UICollectionViewLayoutAttributes *attr = self.attrDict[self.mainIndexPath];
-//    [attr setAlpha:0];
-    [attr setHidden:YES];
-}
-
 -(UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     return self.attrDict[indexPath];

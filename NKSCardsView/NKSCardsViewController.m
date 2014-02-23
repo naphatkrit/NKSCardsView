@@ -97,12 +97,9 @@
 
 #pragma mark - Menu Delegate
 
--(void)willCollapseMenu
-{
-    
-}
 
--(void)didCollapseMenu
+
+-(void)cardsMenuViewController:(NKSCardsMenuCollectionViewController *)cardsMenuViewController didCollapseMenuAtIndexPath:(NSIndexPath *)indexPath
 {
     [self.contentViewController.view setHidden:NO];
     [self.contentViewController expandContent];

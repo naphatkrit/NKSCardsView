@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class NKSCardsMenuCollectionViewController;
 @protocol NKSCardsMenuDelegate <NSObject>
 
--(void)willCollapseMenu;
--(void)didCollapseMenu;
+-(void)cardsMenuViewController:(NKSCardsMenuCollectionViewController *)cardsMenuViewController willCollapseMenuAtIndexPath:(NSIndexPath *)indexPath;
+-(void)cardsMenuViewController:(NKSCardsMenuCollectionViewController *)cardsMenuViewController didCollapseMenuAtIndexPath:(NSIndexPath *)indexPath;
+-(void)cardsMenuViewController:(NKSCardsMenuCollectionViewController *)cardsMenuViewController willExpandMenuAtIndexPath:(NSIndexPath *)indexPath;
+-(void)cardsMenuViewController:(NKSCardsMenuCollectionViewController *)cardsMenuViewController didExpandMenu:(NSIndexPath *)indexPath;
 
 @end
 

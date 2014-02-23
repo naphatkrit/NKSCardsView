@@ -26,7 +26,6 @@
 		814420DF18B139B30057AFEE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 814420DD18B139B30057AFEE /* InfoPlist.strings */; };
 		814420E118B139B30057AFEE /* NKSCardsViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 814420E018B139B30057AFEE /* NKSCardsViewTests.m */; };
 		815EC39A18B14A5600466BBE /* NKSCardsStackLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 815EC39918B14A5600466BBE /* NKSCardsStackLayout.m */; };
-		81919CE318BAA4A8006B0B73 /* NKSTouchForwardedCollectionViewContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 81919CE218BAA4A8006B0B73 /* NKSTouchForwardedCollectionViewContainerView.m */; };
 		81D6EA9E18B17ED700A83AFD /* NKSCardViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D6EA9D18B17ED700A83AFD /* NKSCardViewCell.m */; };
 		81D6EAA018B17FAA00A83AFD /* NKSCardViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81D6EA9F18B17FAA00A83AFD /* NKSCardViewCell.xib */; };
 /* End PBXBuildFile section */
@@ -70,8 +69,6 @@
 		814420E018B139B30057AFEE /* NKSCardsViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NKSCardsViewTests.m; sourceTree = "<group>"; };
 		815EC39818B14A5600466BBE /* NKSCardsStackLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKSCardsStackLayout.h; sourceTree = "<group>"; };
 		815EC39918B14A5600466BBE /* NKSCardsStackLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKSCardsStackLayout.m; sourceTree = "<group>"; };
-		81919CE118BAA4A8006B0B73 /* NKSTouchForwardedCollectionViewContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKSTouchForwardedCollectionViewContainerView.h; sourceTree = "<group>"; };
-		81919CE218BAA4A8006B0B73 /* NKSTouchForwardedCollectionViewContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKSTouchForwardedCollectionViewContainerView.m; sourceTree = "<group>"; };
 		81D6EA9C18B17ED700A83AFD /* NKSCardViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKSCardViewCell.h; sourceTree = "<group>"; };
 		81D6EA9D18B17ED700A83AFD /* NKSCardViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKSCardViewCell.m; sourceTree = "<group>"; };
 		81D6EA9F18B17FAA00A83AFD /* NKSCardViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NKSCardViewCell.xib; sourceTree = "<group>"; };
@@ -148,8 +145,6 @@
 				811854FF18BA6AE20056E6DB /* NKSCardsContentViewController.m */,
 				811854F518BA5FE50056E6DB /* NKSCardsMenuCollectionViewController.h */,
 				811854F618BA5FE50056E6DB /* NKSCardsMenuCollectionViewController.m */,
-				81919CE118BAA4A8006B0B73 /* NKSTouchForwardedCollectionViewContainerView.h */,
-				81919CE218BAA4A8006B0B73 /* NKSTouchForwardedCollectionViewContainerView.m */,
 				814420CD18B139B20057AFEE /* Images.xcassets */,
 				814420B918B139B20057AFEE /* Supporting Files */,
 				81D6EA9C18B17ED700A83AFD /* NKSCardViewCell.h */,
@@ -295,7 +290,6 @@
 				814420C318B139B20057AFEE /* NKSAppDelegate.m in Sources */,
 				8118550018BA6AE20056E6DB /* NKSCardsContentViewController.m in Sources */,
 				814420CC18B139B20057AFEE /* NKSCardsCollectionViewController.m in Sources */,
-				81919CE318BAA4A8006B0B73 /* NKSTouchForwardedCollectionViewContainerView.m in Sources */,
 				811854F418BA5EB50056E6DB /* NKSCardsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
