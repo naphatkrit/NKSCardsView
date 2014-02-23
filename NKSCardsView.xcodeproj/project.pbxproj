@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		811854F418BA5EB50056E6DB /* NKSCardsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 811854F318BA5EB50056E6DB /* NKSCardsViewController.m */; };
+		811854F718BA5FE50056E6DB /* NKSCardsMenuCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 811854F618BA5FE50056E6DB /* NKSCardsMenuCollectionViewController.m */; };
 		814420B318B139B20057AFEE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 814420B218B139B20057AFEE /* Foundation.framework */; };
 		814420B518B139B20057AFEE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 814420B418B139B20057AFEE /* CoreGraphics.framework */; };
 		814420B718B139B20057AFEE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 814420B618B139B20057AFEE /* UIKit.framework */; };
@@ -38,6 +40,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		811854F218BA5EB50056E6DB /* NKSCardsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKSCardsViewController.h; sourceTree = "<group>"; };
+		811854F318BA5EB50056E6DB /* NKSCardsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKSCardsViewController.m; sourceTree = "<group>"; };
+		811854F518BA5FE50056E6DB /* NKSCardsMenuCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKSCardsMenuCollectionViewController.h; sourceTree = "<group>"; };
+		811854F618BA5FE50056E6DB /* NKSCardsMenuCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKSCardsMenuCollectionViewController.m; sourceTree = "<group>"; };
 		814420AF18B139B20057AFEE /* NKSCardsView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NKSCardsView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		814420B218B139B20057AFEE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		814420B418B139B20057AFEE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -130,6 +136,10 @@
 				814420CB18B139B20057AFEE /* NKSCardsCollectionViewController.m */,
 				815EC39818B14A5600466BBE /* NKSCardsStackLayout.h */,
 				815EC39918B14A5600466BBE /* NKSCardsStackLayout.m */,
+				811854F218BA5EB50056E6DB /* NKSCardsViewController.h */,
+				811854F318BA5EB50056E6DB /* NKSCardsViewController.m */,
+				811854F518BA5FE50056E6DB /* NKSCardsMenuCollectionViewController.h */,
+				811854F618BA5FE50056E6DB /* NKSCardsMenuCollectionViewController.m */,
 				814420CD18B139B20057AFEE /* Images.xcassets */,
 				814420B918B139B20057AFEE /* Supporting Files */,
 				81D6EA9C18B17ED700A83AFD /* NKSCardViewCell.h */,
@@ -270,9 +280,11 @@
 			files = (
 				814420BF18B139B20057AFEE /* main.m in Sources */,
 				815EC39A18B14A5600466BBE /* NKSCardsStackLayout.m in Sources */,
+				811854F718BA5FE50056E6DB /* NKSCardsMenuCollectionViewController.m in Sources */,
 				81D6EA9E18B17ED700A83AFD /* NKSCardViewCell.m in Sources */,
 				814420C318B139B20057AFEE /* NKSAppDelegate.m in Sources */,
 				814420CC18B139B20057AFEE /* NKSCardsCollectionViewController.m in Sources */,
+				811854F418BA5EB50056E6DB /* NKSCardsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
