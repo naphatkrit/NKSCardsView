@@ -11,5 +11,5 @@
 @interface NKSCardsContentViewController : UICollectionViewController
 
 -(void)expandContent;
-
+-(void)collapseContent;
 @end

@@ -123,9 +123,17 @@
     {
         self.collapsed = NO;
         stackLayout.stackCardsInterSpacing = NKS_CARDS_SPACING_STACK;
-        
+        for (NKSCardViewCell *cell in collectionView.visibleCells) {
+            [cell setUserInteractionEnabled:YES];
+            [cell setHidden:NO];
+        }
+        if ([self.menuDelegate respondsToSelector:@selector(cardsMenuViewController:willExpandMenuAtIndexPath:)]) {
+            [self.menuDelegate cardsMenuViewController:self willExpandMenuAtIndexPath:indexPath];
+        }
         [collectionView setCollectionViewLayout:stackLayout animated:YES completion:^(BOOL finished) {
-            
+            if ([self.menuDelegate respondsToSelector:@selector(cardsMenuViewController:didExpandMenu:)]) {
+                [self.menuDelegate cardsMenuViewController:self didExpandMenu:indexPath];
+            }
         }];
         [collectionView setScrollEnabled:YES];
         [collectionView setContentOffset:CGPointMake(0, 0) animated:YES];

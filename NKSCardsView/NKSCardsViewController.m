@@ -105,5 +105,14 @@
     [self.contentViewController expandContent];
 //    self.menuTapGestureRecognizer.enabled = YES;
 }
+-(void)cardsMenuViewController:(NKSCardsMenuCollectionViewController *)cardsMenuViewController willExpandMenuAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.contentViewController collapseContent];
+}
+-(void)cardsMenuViewController:(NKSCardsMenuCollectionViewController *)cardsMenuViewController didExpandMenu:(NSIndexPath *)indexPath
+{
+    [self.contentViewController.view setHidden:YES];
+}
+
 
 @end

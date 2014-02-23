@@ -11,6 +11,7 @@
 @class NKSCardsMenuCollectionViewController;
 @protocol NKSCardsMenuDelegate <NSObject>
 
+@optional
 -(void)cardsMenuViewController:(NKSCardsMenuCollectionViewController *)cardsMenuViewController willCollapseMenuAtIndexPath:(NSIndexPath *)indexPath;
 -(void)cardsMenuViewController:(NKSCardsMenuCollectionViewController *)cardsMenuViewController didCollapseMenuAtIndexPath:(NSIndexPath *)indexPath;
 -(void)cardsMenuViewController:(NKSCardsMenuCollectionViewController *)cardsMenuViewController willExpandMenuAtIndexPath:(NSIndexPath *)indexPath;

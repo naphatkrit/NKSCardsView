@@ -55,6 +55,16 @@
     }];
 }
 
+-(void)collapseContent
+{
+    NKSCardsStackLayout *stackLayout = (NKSCardsStackLayout *) self.collectionView.collectionViewLayout;
+    [self.collectionView performBatchUpdates:^{
+        stackLayout.cardSize = CGSizeMake(NKS_CARDS_WIDTH, NKS_CARDS_HEIGHT);
+    } completion:^(BOOL finished) {
+        
+    }];
+    [self.collectionView setContentOffset:CGPointMake(0, 0) animated:YES];
+}
 #pragma mark - Collection View Data Source
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
