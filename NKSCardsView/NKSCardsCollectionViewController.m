@@ -22,7 +22,11 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    NKSCardsStackLayout *stackLayout = [[NKSCardsStackLayout alloc] initWithMainIndex:[NSIndexPath indexPathForItem:0 inSection:0]];
+    NKSCardsStackLayout *stackLayout = [NKSCardsStackLayout new];
+    stackLayout.cardSize = CGSizeMake(300.0, 200.0);
+    stackLayout.mainStackSpacing = 100.0;
+    stackLayout.stackCardsInterSpacing = 60.0;
+    stackLayout.mainIndexPath = [NSIndexPath indexPathForItem:0 inSection:0];
     [self.collectionView setCollectionViewLayout:stackLayout];
     [self.collectionView registerNib:[UINib nibWithNibName:@"NKSCardViewCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:REUSE_IDENTIFIER];
 }
@@ -47,7 +51,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NKSCardViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:REUSE_IDENTIFIER forIndexPath:indexPath];
-    cell.headingLabel.text = [NSString stringWithFormat:@"Heading %d", indexPath.item];
+    cell.headingLabel.text = [NSString stringWithFormat:@"Heading %ld", (long)indexPath.item];
     
     return cell;
 }
@@ -56,7 +60,12 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NKSCardsStackLayout *stackLayout = [[NKSCardsStackLayout alloc] initWithMainIndex:indexPath];
+    NKSCardsStackLayout *stackLayout = [NKSCardsStackLayout new];
+    NKSCardsStackLayout *oldLayout = (NKSCardsStackLayout *) collectionView.collectionViewLayout;
+    stackLayout.mainIndexPath = indexPath;
+    stackLayout.mainStackSpacing = oldLayout.mainStackSpacing;
+    stackLayout.cardSize = oldLayout.cardSize;
+    stackLayout.stackCardsInterSpacing = oldLayout.stackCardsInterSpacing;
     [collectionView setCollectionViewLayout:stackLayout animated:YES];
 }
 

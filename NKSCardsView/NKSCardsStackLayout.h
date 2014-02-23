@@ -8,8 +8,32 @@
 
 #import <UIKit/UIKit.h>
 
+/*!
+ A Stack Layout is used to layout CollectionViewCells as a vertical stack of cards. 
+ An indexPath can be optionally set as main, meaning this card will be floating above
+ other cards.
+ */
 @interface NKSCardsStackLayout : UICollectionViewLayout
 
--(NKSCardsStackLayout *)initWithMainIndex:(NSIndexPath *)mainIndex;
+/*!
+ The indexPath of the cell designated as the main card.
+ */
+@property (nonatomic, strong) NSIndexPath *mainIndexPath;
+
+/*!
+ The spacing between the cards in the stack. This is the value
+ from the top of one card to another
+ */
+@property (nonatomic) CGFloat stackCardsInterSpacing;
+
+/*!
+ The spacing between the main card and the stack.
+ */
+@property (nonatomic) CGFloat mainStackSpacing;
+
+/*!
+ The size of a card.
+ */
+@property (nonatomic) CGSize cardSize;
 
 @end
