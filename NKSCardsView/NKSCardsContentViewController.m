@@ -11,7 +11,7 @@
 #import "NKSCardViewCell.h"
 #define REUSE_IDENTIFIER @"id"
 
-@interface NKSCardsContentViewController ()
+@interface NKSCardsContentViewController () 
 
 @end
 
@@ -33,9 +33,7 @@
     [self.collectionView setShowsVerticalScrollIndicator:NO];
     
     NKSCardsStackLayout *stackLayout = [NKSCardsStackLayout new];
-    stackLayout.cardSize = CGSizeMake(300.0, 800.0);
-    stackLayout.mainStackSpacing = 100.0;
-    stackLayout.stackCardsInterSpacing = 60.0;
+    stackLayout.cardSize = CGSizeMake(NKS_CARDS_WIDTH, NKS_CARDS_HEIGHT);
     stackLayout.mainIndexPath = [NSIndexPath indexPathForItem:0 inSection:0];
     [self.collectionView setCollectionViewLayout:stackLayout];
     [self.collectionView registerNib:[UINib nibWithNibName:@"NKSCardViewCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:REUSE_IDENTIFIER];
@@ -45,6 +43,16 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)expandContent
+{
+    NKSCardsStackLayout *stackLayout = (NKSCardsStackLayout *) self.collectionView.collectionViewLayout;
+    [self.collectionView performBatchUpdates:^{
+        stackLayout.cardSize = CGSizeMake(NKS_CARDS_WIDTH, NKS_CARDS_HEIGHT_FULL);
+    } completion:^(BOOL finished) {
+        
+    }];
 }
 
 #pragma mark - Collection View Data Source
@@ -70,18 +78,7 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NKSCardsStackLayout *stackLayout = [NKSCardsStackLayout new];
-    NKSCardsStackLayout *oldLayout = (NKSCardsStackLayout *) collectionView.collectionViewLayout;
-    stackLayout.mainIndexPath = indexPath;
-    stackLayout.mainStackSpacing = oldLayout.mainStackSpacing;
-    stackLayout.cardSize = oldLayout.cardSize;
-    stackLayout.stackCardsInterSpacing = 5;
     
-    __weak UICollectionView *weakCollectionView = collectionView;
-    [collectionView setCollectionViewLayout:stackLayout animated:YES completion:^(BOOL finished) {
-        [[weakCollectionView cellForItemAtIndexPath:indexPath] setHidden:YES];
-    }];
-    [self.view setUserInteractionEnabled:NO];
 }
 
 @end

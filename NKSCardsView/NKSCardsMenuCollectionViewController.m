@@ -27,9 +27,9 @@
     [self.collectionView setShowsVerticalScrollIndicator:NO];
     
     NKSCardsStackLayout *stackLayout = [NKSCardsStackLayout new];
-    stackLayout.cardSize = CGSizeMake(300.0, 400.0);
+    stackLayout.cardSize = CGSizeMake(NKS_CARDS_WIDTH, NKS_CARDS_HEIGHT);
     stackLayout.mainStackSpacing = 100.0;
-    stackLayout.stackCardsInterSpacing = 60.0;
+    stackLayout.stackCardsInterSpacing = NKS_CARDS_SPACING_STACK;
 //    stackLayout.mainIndexPath = [NSIndexPath indexPathForItem:0 inSection:0];
     [self.collectionView setCollectionViewLayout:stackLayout];
     [self.collectionView registerNib:[UINib nibWithNibName:@"NKSCardViewCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:REUSE_IDENTIFIER];
@@ -70,12 +70,16 @@
         stackLayout.mainIndexPath = indexPath;
         stackLayout.mainStackSpacing = oldLayout.mainStackSpacing;
         stackLayout.cardSize = oldLayout.cardSize;
-        stackLayout.stackCardsInterSpacing = 5;
+        stackLayout.stackCardsInterSpacing = NKS_CARDS_SPACING_COLLAPSED;
         
         __weak UICollectionView *weakCollectionView = collectionView;
         [self.menuDelegate willCollapseMenu];
         [collectionView setCollectionViewLayout:stackLayout animated:YES completion:^(BOOL finished) {
-            [[weakCollectionView cellForItemAtIndexPath:indexPath] setHidden:YES];
+            [weakCollectionView performBatchUpdates:^{
+                [stackLayout hideMainIndex];
+            } completion:^(BOOL finished) {
+                
+            }];
             [self.menuDelegate didCollapseMenu];
         }];
         [self.view setUserInteractionEnabled:NO];

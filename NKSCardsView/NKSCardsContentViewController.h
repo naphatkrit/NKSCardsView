@@ -10,4 +10,6 @@
 
 @interface NKSCardsContentViewController : UICollectionViewController
 
+-(void)expandContent;
+
 @end

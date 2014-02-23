@@ -10,7 +10,7 @@
 #import "NKSCardsContentViewController.h"
 #import "NKSCardsMenuCollectionViewController.h"
 
-@interface NKSCardsViewController ()
+@interface NKSCardsViewController () <NKSCardsMenuDelegate>
 
 @property (nonatomic, strong) NKSCardsMenuCollectionViewController *menuViewController;
 @property (nonatomic, strong) NKSCardsContentViewController *contentViewController;
@@ -93,6 +93,7 @@
 -(void)didCollapseMenu
 {
     [self.contentViewController.view setHidden:NO];
+    [self.contentViewController expandContent];
 }
 
 @end

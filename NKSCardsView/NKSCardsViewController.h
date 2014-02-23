@@ -10,6 +10,6 @@
 
 @protocol NKSCardsMenuDelegate;
 
-@interface NKSCardsViewController : UIViewController <NKSCardsMenuDelegate>
+@interface NKSCardsViewController : UIViewController
 
 @end

@@ -36,4 +36,9 @@
  */
 @property (nonatomic) CGSize cardSize;
 
+/*!
+ Set the alpha of the cell of mainIndex to 0
+ */
+-(void)hideMainIndex;
+
 @end
