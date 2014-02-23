@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol NKSCardsMenuDelegate <NSObject>
+
+-(void)willCollapseMenu;
+-(void)didCollapseMenu;
+
+@end
+
 @interface NKSCardsMenuCollectionViewController : UICollectionViewController
+
+@property (nonatomic, weak) id<NKSCardsMenuDelegate> menuDelegate;
 
 @end

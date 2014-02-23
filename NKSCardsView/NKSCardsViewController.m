@@ -37,13 +37,20 @@
     [self.view setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self setupMenuViewController];
     [self setupContentViewController];
+    [self.contentViewController.view setHidden:YES];
 }
 
 - (void)setupMenuViewController
 {
-    return;
     self.menuViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"MENU"];
-    [self.view addSubview:self.menuViewController.view];
+    self.menuViewController.menuDelegate = self;
+    if (self.contentViewController && self.contentViewController.view.superview == self.view) {
+        [self.view insertSubview:self.menuViewController.view aboveSubview:self.contentViewController.view];
+    }
+    else {
+        [self.view addSubview:self.menuViewController.view];
+    }
+    
     [self addChildViewController:self.menuViewController];
     NSLayoutConstraint *topConstraint = [NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.menuViewController.view attribute:NSLayoutAttributeTop multiplier:1.0 constant:0.0];
     NSLayoutConstraint *botConstraint = [NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.menuViewController.view attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0.0];
@@ -55,7 +62,13 @@
 - (void)setupContentViewController
 {
     self.contentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CONTENT"];
-    [self.view addSubview:self.contentViewController.view];
+    if (self.menuViewController && self.menuViewController.view.superview == self.view) {
+        [self.view insertSubview:self.contentViewController.view belowSubview:self.menuViewController.view];
+    }
+    else {
+        [self.view addSubview:self.contentViewController.view];
+    }
+    
     [self addChildViewController:self.contentViewController];
     NSLayoutConstraint *topConstraint = [NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.contentViewController.view attribute:NSLayoutAttributeTop multiplier:1.0 constant:0.0];
     NSLayoutConstraint *botConstraint = [NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.contentViewController.view attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0.0];
@@ -68,6 +81,18 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Menu Delegate
+
+-(void)willCollapseMenu
+{
+    
+}
+
+-(void)didCollapseMenu
+{
+    [self.contentViewController.view setHidden:NO];
 }
 
 @end

@@ -13,6 +13,8 @@
 
 @interface NKSCardsMenuCollectionViewController ()
 
+@property (nonatomic) BOOL collapsed;
+
 @end
 
 @implementation NKSCardsMenuCollectionViewController
@@ -62,18 +64,22 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NKSCardsStackLayout *stackLayout = [NKSCardsStackLayout new];
-    NKSCardsStackLayout *oldLayout = (NKSCardsStackLayout *) collectionView.collectionViewLayout;
-    stackLayout.mainIndexPath = indexPath;
-    stackLayout.mainStackSpacing = oldLayout.mainStackSpacing;
-    stackLayout.cardSize = oldLayout.cardSize;
-    stackLayout.stackCardsInterSpacing = 5;
-    
-    __weak UICollectionView *weakCollectionView = collectionView;
-    [collectionView setCollectionViewLayout:stackLayout animated:YES completion:^(BOOL finished) {
-        [[weakCollectionView cellForItemAtIndexPath:indexPath] setHidden:YES];
-    }];
-    [self.view setUserInteractionEnabled:NO];
+    if (!self.collapsed) {
+        NKSCardsStackLayout *stackLayout = [NKSCardsStackLayout new];
+        NKSCardsStackLayout *oldLayout = (NKSCardsStackLayout *) collectionView.collectionViewLayout;
+        stackLayout.mainIndexPath = indexPath;
+        stackLayout.mainStackSpacing = oldLayout.mainStackSpacing;
+        stackLayout.cardSize = oldLayout.cardSize;
+        stackLayout.stackCardsInterSpacing = 5;
+        
+        __weak UICollectionView *weakCollectionView = collectionView;
+        [self.menuDelegate willCollapseMenu];
+        [collectionView setCollectionViewLayout:stackLayout animated:YES completion:^(BOOL finished) {
+            [[weakCollectionView cellForItemAtIndexPath:indexPath] setHidden:YES];
+            [self.menuDelegate didCollapseMenu];
+        }];
+        [self.view setUserInteractionEnabled:NO];
+    }
 }
 
 @end

@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NKSCardsViewController : UIViewController
+@protocol NKSCardsMenuDelegate;
+
+@interface NKSCardsViewController : UIViewController <NKSCardsMenuDelegate>
 
 @end
