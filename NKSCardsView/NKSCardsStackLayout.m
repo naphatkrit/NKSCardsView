@@ -100,6 +100,7 @@
     CGFloat height = self.cardSize.height;
     CGFloat width = self.cardSize.width;
     CGFloat stackTopMargin = 0.0;
+    CGFloat topMargin = 20.0;
     NSInteger offset = 0;
     
     if (self.mainIndexPath) {
@@ -120,7 +121,7 @@
         stackTopMargin = height + self.mainStackSpacing;
     }
     
-    return CGRectMake((self.collectionView.bounds.size.width - width)/2.0, stackTopMargin + (indexPath.item + offset) * self.stackCardsInterSpacing, width, height);
+    return CGRectMake((self.collectionView.bounds.size.width - width)/2.0, topMargin + stackTopMargin + (indexPath.item + offset) * self.stackCardsInterSpacing, width, height);
 }
 
 -(UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath

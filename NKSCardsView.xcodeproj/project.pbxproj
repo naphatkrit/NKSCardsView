@@ -26,6 +26,7 @@
 		814420DF18B139B30057AFEE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 814420DD18B139B30057AFEE /* InfoPlist.strings */; };
 		814420E118B139B30057AFEE /* NKSCardsViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 814420E018B139B30057AFEE /* NKSCardsViewTests.m */; };
 		815EC39A18B14A5600466BBE /* NKSCardsStackLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 815EC39918B14A5600466BBE /* NKSCardsStackLayout.m */; };
+		81919CE818BAB47F006B0B73 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81919CE718BAB47F006B0B73 /* QuartzCore.framework */; };
 		81D6EA9E18B17ED700A83AFD /* NKSCardViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D6EA9D18B17ED700A83AFD /* NKSCardViewCell.m */; };
 		81D6EAA018B17FAA00A83AFD /* NKSCardViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81D6EA9F18B17FAA00A83AFD /* NKSCardViewCell.xib */; };
 /* End PBXBuildFile section */
@@ -69,6 +70,7 @@
 		814420E018B139B30057AFEE /* NKSCardsViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NKSCardsViewTests.m; sourceTree = "<group>"; };
 		815EC39818B14A5600466BBE /* NKSCardsStackLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKSCardsStackLayout.h; sourceTree = "<group>"; };
 		815EC39918B14A5600466BBE /* NKSCardsStackLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKSCardsStackLayout.m; sourceTree = "<group>"; };
+		81919CE718BAB47F006B0B73 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		81D6EA9C18B17ED700A83AFD /* NKSCardViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKSCardViewCell.h; sourceTree = "<group>"; };
 		81D6EA9D18B17ED700A83AFD /* NKSCardViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKSCardViewCell.m; sourceTree = "<group>"; };
 		81D6EA9F18B17FAA00A83AFD /* NKSCardViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NKSCardViewCell.xib; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81919CE818BAB47F006B0B73 /* QuartzCore.framework in Frameworks */,
 				814420B518B139B20057AFEE /* CoreGraphics.framework in Frameworks */,
 				814420B718B139B20057AFEE /* UIKit.framework in Frameworks */,
 				814420B318B139B20057AFEE /* Foundation.framework in Frameworks */,
@@ -120,6 +123,7 @@
 		814420B118B139B20057AFEE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				81919CE718BAB47F006B0B73 /* QuartzCore.framework */,
 				814420B218B139B20057AFEE /* Foundation.framework */,
 				814420B418B139B20057AFEE /* CoreGraphics.framework */,
 				814420B618B139B20057AFEE /* UIKit.framework */,
