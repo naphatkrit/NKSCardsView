@@ -7,11 +7,16 @@
 //
 
 #import "NKSCardsViewController.h"
+#import "NKSCardsContentViewController.h"
 #import "NKSCardsMenuCollectionViewController.h"
 
 @interface NKSCardsViewController ()
 
 @property (nonatomic, strong) NKSCardsMenuCollectionViewController *menuViewController;
+@property (nonatomic, strong) NKSCardsContentViewController *contentViewController;
+
+-(void)setupMenuViewController;
+-(void)setupContentViewController;
 
 @end
 
@@ -30,7 +35,13 @@
 {
     [super viewDidLoad];
     [self.view setTranslatesAutoresizingMaskIntoConstraints:NO];
-    // set up menu
+    [self setupMenuViewController];
+    [self setupContentViewController];
+}
+
+- (void)setupMenuViewController
+{
+    return;
     self.menuViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"MENU"];
     [self.view addSubview:self.menuViewController.view];
     [self addChildViewController:self.menuViewController];
@@ -38,7 +49,18 @@
     NSLayoutConstraint *botConstraint = [NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.menuViewController.view attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0.0];
     NSLayoutConstraint *rightConstraint = [NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.menuViewController.view attribute:NSLayoutAttributeRight multiplier:1.0 constant:0.0];
     NSLayoutConstraint *leftConstraint = [NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.menuViewController.view attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0.0];
-    
+    [self.view addConstraints:@[topConstraint, botConstraint, rightConstraint, leftConstraint]];
+}
+
+- (void)setupContentViewController
+{
+    self.contentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CONTENT"];
+    [self.view addSubview:self.contentViewController.view];
+    [self addChildViewController:self.contentViewController];
+    NSLayoutConstraint *topConstraint = [NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.contentViewController.view attribute:NSLayoutAttributeTop multiplier:1.0 constant:0.0];
+    NSLayoutConstraint *botConstraint = [NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.contentViewController.view attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0.0];
+    NSLayoutConstraint *rightConstraint = [NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.contentViewController.view attribute:NSLayoutAttributeRight multiplier:1.0 constant:0.0];
+    NSLayoutConstraint *leftConstraint = [NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.contentViewController.view attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0.0];
     [self.view addConstraints:@[topConstraint, botConstraint, rightConstraint, leftConstraint]];
 }
 
@@ -48,7 +70,4 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)touchedbutton:(id)sender {
-    NSLog(@"touched");
-}
 @end

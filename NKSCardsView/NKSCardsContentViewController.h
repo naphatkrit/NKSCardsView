@@ -1,5 +1,5 @@
 //
-//  NKSCardsViewController.h
+//  NKSCardsContentViewController.h
 //  NKSCardsView
 //
 //  Created by Naphat Sanguansin on 2/23/14.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NKSCardsViewController : UIViewController
+@interface NKSCardsContentViewController : UICollectionViewController
 
 @end

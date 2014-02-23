@@ -1,34 +1,42 @@
 //
-//  NKSCardsMenuCollectionViewController.m
+//  NKSCardsContentViewController.m
 //  NKSCardsView
 //
 //  Created by Naphat Sanguansin on 2/23/14.
 //  Copyright (c) 2014 Naphat Sanguansin. All rights reserved.
 //
 
-#import "NKSCardsMenuCollectionViewController.h"
+#import "NKSCardsContentViewController.h"
 #import "NKSCardsStackLayout.h"
 #import "NKSCardViewCell.h"
 #define REUSE_IDENTIFIER @"id"
 
-@interface NKSCardsMenuCollectionViewController ()
+@interface NKSCardsContentViewController ()
 
 @end
 
-@implementation NKSCardsMenuCollectionViewController
+@implementation NKSCardsContentViewController
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    [self.view setTranslatesAutoresizingMaskIntoConstraints:NO];
+	[self.view setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.collectionView setShowsVerticalScrollIndicator:NO];
     
     NKSCardsStackLayout *stackLayout = [NKSCardsStackLayout new];
-    stackLayout.cardSize = CGSizeMake(300.0, 400.0);
+    stackLayout.cardSize = CGSizeMake(300.0, 800.0);
     stackLayout.mainStackSpacing = 100.0;
     stackLayout.stackCardsInterSpacing = 60.0;
-//    stackLayout.mainIndexPath = [NSIndexPath indexPathForItem:0 inSection:0];
+    stackLayout.mainIndexPath = [NSIndexPath indexPathForItem:0 inSection:0];
     [self.collectionView setCollectionViewLayout:stackLayout];
     [self.collectionView registerNib:[UINib nibWithNibName:@"NKSCardViewCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:REUSE_IDENTIFIER];
 }
@@ -48,7 +56,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 7;
+    return 1;
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
