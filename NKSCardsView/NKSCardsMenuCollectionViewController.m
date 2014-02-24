@@ -14,6 +14,7 @@
 @interface NKSCardsMenuCollectionViewController ()
 
 @property (nonatomic) BOOL collapsed;
+@property (nonatomic, strong) NSMutableArray *originalPositions;
 
 @end
 
@@ -60,7 +61,7 @@
     
     NKSCardsStackLayout *stackLayout = [NKSCardsStackLayout new];
     stackLayout.cardSize = CGSizeMake(NKS_CARDS_WIDTH, NKS_CARDS_HEIGHT);
-    stackLayout.mainStackSpacing = 100.0;
+    stackLayout.mainStackSpacing = NKS_CARDS_MAIN_STACK_SPACING;
     stackLayout.stackCardsInterSpacing = NKS_CARDS_SPACING_STACK;
     [self.collectionView setCollectionViewLayout:stackLayout];
     [self.collectionView registerNib:[UINib nibWithNibName:@"NKSCardViewCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:REUSE_IDENTIFIER];
@@ -138,6 +139,38 @@
         [collectionView setScrollEnabled:YES];
         [collectionView setContentOffset:CGPointMake(0, 0) animated:YES];
     }
+}
+
+#pragma mark - Scroll View Delegate
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if (scrollView.contentOffset.y < 0.0) {
+        if (!self.originalPositions) {
+            self.originalPositions = [[NSMutableArray alloc] initWithCapacity:scrollView.subviews.count];
+            for (int i = 0; i < scrollView.subviews.count; i++) {
+                self.originalPositions[i] = [NSNumber numberWithFloat:sqrtf([scrollView.subviews[i] frame].origin.y)];
+            }
+        }
+        for (int i = 0; i < scrollView.subviews.count; i++) {
+            UIView *subview = scrollView.subviews[i];
+            CGFloat scale = log2f(-1 * scrollView.contentOffset.y) - 1;
+            scale = MAX(scale, 1.0);
+            CGFloat offset = scale * [self.originalPositions[i] floatValue];
+            
+            subview.transform = CGAffineTransformMakeTranslation(0, offset);
+        }
+    } else {
+        self.originalPositions = nil;
+    }
+    
+}
+-(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    [UIView animateWithDuration:0.5 animations:^{
+        for (UIView *subview in scrollView.subviews) {
+            subview.transform = CGAffineTransformIdentity;
+        }
+    }];
 }
 
 @end

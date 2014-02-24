@@ -111,7 +111,7 @@
             case NSOrderedAscending:
                 break;
             case NSOrderedSame:
-                return CGRectMake((self.collectionView.bounds.size.width - width)/2.0, 0, width, height);
+                return CGRectMake((self.collectionView.bounds.size.width - width)/2.0, topMargin, width, height);
                 break;
             case NSOrderedDescending:
                 offset = -1;

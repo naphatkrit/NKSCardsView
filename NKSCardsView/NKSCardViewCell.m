@@ -27,6 +27,13 @@
         self.layer.borderWidth = 0.3;
         self.layer.borderColor = [UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:1.0].CGColor;
         self.layer.cornerRadius = 5.0;
+        
+//        self.layer.anchorPoint = CGPointMake(0.5, 0);
+//        CATransform3D rotation = CATransform3DIdentity;
+//        rotation.m34 = 1.0 / -1000.0;
+//        rotation = CATransform3DRotate(rotation, 1.8, 1.0, 0, 0);
+//        self.layer.transform = rotation;
+        
 //        self.layer.shouldRasterize = YES;
     }
     return self;
